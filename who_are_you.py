@@ -1,4 +1,4 @@
-# GNB - 1st - 💡 Who Are You?
+# Governor-Nephi B. - 1st - 💡 Who Are You?
 nombre = input("Good day, User! What's your name? (only your name please): ")
 
 age = input("That's an... interesting name. How old are you right now? (only the number please): ")
