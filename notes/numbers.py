@@ -34,5 +34,10 @@ minutes = 4
 
 print(hours*60+minutes)
 
-age = int*(input("How old are you, buddy?: \n"))
-print("Wow! You are old that is", 5256*age, "minutes!")
+#age = int*(input("How old are you, buddy?: \n"))
+#print("Wow! You are old that is", 5256*age, "minutes!")
+
+print(round(5.44455432, 1))
+
+avg = round((hours+hours+minutes+minutes)/4, 1)
+print(avg)
