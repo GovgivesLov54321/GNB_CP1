@@ -17,4 +17,4 @@ avg_grade = (first+second+third+fourth+fifth+sixth+seventh)/7
 
 avg_grade = round(avg_grade, 2)
 
-print("WOW!!! Your average grade is", float(avg_grade) +"%!")
+print("WOW!!! Your average grade is", str(avg_grade) +"%!")
