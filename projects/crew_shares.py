@@ -1,13 +1,17 @@
 # GNB - 1st - 💡Crew Shares
 
-crew_num = int(input("How many people are a part of the crew? (not including the captain and first mate): "))
-last_outing = float(input("So how much money did the crew last make? (give a number): "))
+crew_num = int(input("How many people are a part of the crew? (not including the captain and first mate): \n"))
+last_outing = float(input("So how much money did the crew last make? (give a number): \n"))
 
-caps_share = float(round((last_outing * (7/(crew_num + 2))), 2))
-print(caps_share)
+divider = crew_num + 10
+shares = last_outing / divider
 
-first_mate_share = float(round((last_outing * (3/(crew_num + 2 ))), 2))
+caps_share = shares * 7
+print(f"The captain will receive ${caps_share:.2f}")
+
+first_mate_share = shares * 3
 print(first_mate_share)
 
-crews_share = float(round((last_outing * (1/(crew_num + 2 ))) - 500, 2))
-print(crews_share)
+precrews_share = shares
+crew_shares = precrews_share - 500
+print(crew_shares)
