@@ -10,8 +10,8 @@ caps_share = shares * 7
 print(f"The captain will receive ${caps_share:.2f}")
 
 first_mate_share = shares * 3
-print(first_mate_share)
+print(f"The first mate will receive ${first_mate_share:.2f}")
 
 precrews_share = shares
 crew_shares = precrews_share - 500
-print(crew_shares)
+print(f"Every crew member will receive ${crew_shares:.2f}")
