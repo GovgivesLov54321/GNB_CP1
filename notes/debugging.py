@@ -10,3 +10,10 @@ numtwo = "5"
 
 print(numone + numtwo)
 # Have well thought out plan, step by step go through our logic
+
+# Run-time error
+import random
+while True:
+    denominator = random.randint(0,5)
+    
+    print(10/denominator)
