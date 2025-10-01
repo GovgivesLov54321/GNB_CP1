@@ -9,7 +9,6 @@ while True:
     choice = input("Choose an option (1-3):\n")
     if choice == "1":
         add = input("What would you like to add to your shopping list, User? (one item at a time):\n")
-        continue = input()
         list.append(add)
     elif choice == "2":
         clear = input("Would you like to completely empty your list? (Yes or No):\n")
@@ -18,9 +17,10 @@ while True:
         elif clear == "No":
             pass
         print(list)
-        remove = input("What item would you like to remove from your shopping list, User?:\n")
-        
+        remove = input("What item would you like to remove from your shopping list, User? (enter Cancel to go back to options):\n")
         list.remove(remove)
+        if remove == "Cancel":
+            continue    
         
         #if not add:
            # print("You can't remove items - you haven't added any items.")
