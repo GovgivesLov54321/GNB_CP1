@@ -28,3 +28,5 @@ fruit = ("Apple", "Orange", "Pinapple") #tuple ordered, not changeable
 
 veggies = {"Potato", "Cilantro", "Radish"} #set unordered, changeable
 print(veggies)
+veggies.clear
+print(veggies)
