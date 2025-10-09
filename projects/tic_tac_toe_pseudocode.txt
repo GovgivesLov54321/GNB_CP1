@@ -1,5 +1,5 @@
 GNB - 1st - 🔨 Pseudocode Tic Tac Toe Program
 
-Oughta import random
+Import random
 
-1. 
+while True: 
