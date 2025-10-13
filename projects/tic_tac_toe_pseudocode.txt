@@ -1,5 +1,42 @@
 GNB - 1st - 🔨 Pseudocode Tic Tac Toe Program
+import random
 
-Import random
+Variable board is LIST: [[1, 2, 3],
+                         [4, 5, 6],
+                         [7, 8, 9]
+                         ]
 
-while True: 
+Show "Welcome to Tic Tac Toe, User!"
+
+Variable coinflip is random integer between 1-2
+Variable order is input from "We'll decide who goes first between you and the computer with a coin flip. Choose heads or tails (H or T).".strip & .capitalize
+
+    IF order is H or T then:
+        IF coinflip is 1 show: "It's heads!"
+        ELSE show: "It's tails!"
+
+        IF coinflip is 1 and order is H show: "User starts! You're X's and computer is O's."
+            Variable user_choice is input - input is integer - from "Which spot do you want first?: "
+            Show board
+                IF user_choice is 1 replace 1 in board with X
+                Repeat for numbers 2-9 but with ELIFs
+                ELSE show: "Not an option, User."
+        ELIF coinflip is 2 and order is T show: "User starts! You're X's and computer is O's."
+            Variable user_choice is input - input is integer - from "Which spot do you want first?: "
+            Show board
+                IF user_choice is 1 replace 1 in board with X
+                Repeat for numbers 2-9 but with ELIFs
+                ELSE show: "Not an option, User."
+        ELIF coinflip is 1 and order is T show: "Computer starts! You're X's and computer is O's."
+            Variable comp_choice is random integer in range 1-9
+            IF comp_choice is 1 replace 1 in board with O
+            Repeat for numbers 2-8 but with ELIFs
+            ELSE show: replace 9 in board with O
+        ELIF coinflip is 2 and order is H show: "Computer starts! You're X's and computer is O's."
+            Variable comp_choice is random integer in range 1-9
+            IF comp_choice is 1 replace 1 in board with O
+            Repeat for numbers 2-8 but with ELIFs
+            ELSE show: replace 9 in board with O
+    ELSE show: "Not an option, User"
+
+while True:

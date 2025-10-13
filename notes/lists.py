@@ -31,3 +31,5 @@ print(veggies)
 veggies.clear
 print(veggies)
 print(board)
+
+print("\\")
