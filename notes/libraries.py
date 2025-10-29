@@ -5,7 +5,7 @@ import turtle as t
 colors = ["orange", "green", "yellow", "red", "pink", "purple", "blue"]
 side = random.randint(10,500)
 t.color(random.choice(colors))
-t.shape("")
+t.shape("turtle")
 
 t.fillcolor(random.choice(colors))
 t.begin_fill()
