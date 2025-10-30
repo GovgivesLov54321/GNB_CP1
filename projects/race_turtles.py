@@ -2,34 +2,66 @@
 import random as r
 import turtle as t
 
-t.shape("turtle")
-
-t.penup()
-
 turtle1 = t.Turtle()
 turtle2 = t.Turtle()
 turtle3 = t.Turtle()
 turtle4 = t.Turtle()
 turtle5 = t.Turtle()
+line = t.Turtle()
 
 turtle1.shape("turtle")
 turtle2.shape("turtle")
 turtle3.shape("turtle")
 turtle4.shape("turtle")
 turtle5.shape("turtle")
+line.shape("arrow")
 
-turtle1.color("#000000")
-turtle2.color("#CC0066")
-turtle3.color("#006633")
-turtle4.color("#000099")
-turtle5.color("#F6981D")
+turtle1.color("black")
+turtle2.color("pink")
+turtle3.color("green")
+turtle4.color("blue")
+turtle5.color("orange")
+line.color("black")
 
-turtle1.goto(0, 500)
-turtle2.goto(0, 400)
-turtle3.goto(0, 300)
-turtle4.goto(0, 200)
-turtle5.goto(0, 100)
+def setup():
+    turtle1.teleport(-200, 400)
+    turtle2.teleport(-200, 300)
+    turtle3.teleport(-200, 200)
+    turtle4.teleport(-200, 100)
+    turtle5.teleport(-200, 0)
+    line.teleport(500, -100)
 
-t.pendown
+    line.left(90)
+    line.forward(600)
 
+    line.hideturtle()
+
+setup()
+
+def race():
+    for t in t:
+        turtle1.forward(r.randint(1, 30))
+
+race()
 t.done()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
