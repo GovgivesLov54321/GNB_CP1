@@ -24,11 +24,11 @@ turtle5.color("orange")
 line.color("black")
 
 def setup():
-    turtle1.teleport(-200, 400)
-    turtle2.teleport(-200, 300)
-    turtle3.teleport(-200, 200)
-    turtle4.teleport(-200, 100)
-    turtle5.teleport(-200, 0)
+    turtle1.teleport(-500, 400)
+    turtle2.teleport(-500, 300)
+    turtle3.teleport(-500, 200)
+    turtle4.teleport(-500, 100)
+    turtle5.teleport(-500, 0)
     line.teleport(500, -100)
 
     line.left(90)
@@ -39,29 +39,27 @@ def setup():
 setup()
 
 def race():
-    for t in t:
-        turtle1.forward(r.randint(1, 30))
+    while True:
+        turtle1.forward(r.randint(1, 15))
+        turtle2.forward(r.randint(1, 15))
+        turtle3.forward(r.randint(1, 15))
+        turtle4.forward(r.randint(1, 15))
+        turtle5.forward(r.randint(1, 15))
 
 race()
-t.done()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def winner():
+    if turtle1.goto(500,0):
+        t.done()
+    elif turtle2.goto(500,0):
+        t.done()
+    elif turtle3.goto(500,0):
+        t.done()
+    elif turtle4.(500,0):
+        t.done()
+    else:
+        t.done()
+winner()
 
 
 
