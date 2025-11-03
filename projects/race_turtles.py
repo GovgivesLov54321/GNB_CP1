@@ -55,7 +55,7 @@ def winner():
         t.done()
     elif turtle3.goto(500,0):
         t.done()
-    elif turtle4.(500,0):
+    elif turtle4.goto(500,0):
         t.done()
     else:
         t.done()
