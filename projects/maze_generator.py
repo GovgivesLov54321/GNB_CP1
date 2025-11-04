@@ -4,14 +4,25 @@ import turtle as t
 
 maze_drawer1 = t.Turtle()
 maze_drawer1.shape("circle")
-maze_drawer1.teleport(-400, 400)
+
 maze_drawer2 = t.Turtle()
 maze_drawer2.shape("circle")
 
 
 def set_up():
-    help
-
+    maze_drawer1.teleport(-400, 400)
+    maze_drawer2.teleport(0, 0)
+    maze_drawer1.right(90)   
+    maze_drawer2.left(90)
+    maze_drawer1.forward(400)   
+    maze_drawer2.forward(400)
+    maze_drawer1.left(90)   
+    maze_drawer2.left(90)
+    maze_drawer1.forward(365)   
+    maze_drawer2.forward(365)
+    maze_drawer1.hideturtle()   
+    maze_drawer2.hideturtle()
+ 
 set_up()
 
 def walls():
