@@ -8,13 +8,21 @@ maze_drawer1.shape("circle")
 maze_drawer2 = t.Turtle()
 maze_drawer2.shape("circle")
 
-grid_rows = []
-rows = []
-grid_col = []
-col = []
+grid_rows = [[], [], [], [], [], []]
+grid_cols = [[], [], [], [], [], []]
 
-for row in rows:
-    []
+
+for iter,row in enumerate(grid_rows):
+    if r.randint(0, 1)==1:
+        grid_rows[iter]=1
+
+for iter,col in enumerate(grid_cols):
+    if r.randint(0, 1)==1:
+        grid_cols[iter]=1
+
+print(grid_rows)
+print(grid_cols)
+
 
 
 def set_up():
