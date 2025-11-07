@@ -8,22 +8,36 @@ maze_drawer1.shape("circle")
 maze_drawer2 = t.Turtle()
 maze_drawer2.shape("circle")
 
+maze_drawer3 = t.Turtle()
+maze_drawer3.shape("turtle")
+
 grid_rows = [[], [], [], [], [], []]
 grid_cols = [[], [], [], [], [], []]
 
 
 for iter,row in enumerate(grid_rows):
     if r.randint(0, 1)==1:
-        grid_rows[iter]=1
+        row.append(1)
+    else:
+        row.append(0)
 
 for iter,col in enumerate(grid_cols):
     if r.randint(0, 1)==1:
-        grid_cols[iter]=1
+       col.append(1)
+    else:
+        col.append(0)
+
+
 
 print(grid_rows)
 print(grid_cols)
 
 
+
+if row in grid_rows == 1:
+    maze_drawer3.teleport(0, 0)
+    t.pendown()
+    maze_drawer3.forward(400)
 
 def set_up():
     maze_drawer1.teleport(-400, 400)
@@ -41,10 +55,10 @@ def set_up():
  
 set_up()
 
-def walls():
-    help
+def draw_walls():
+   help
 
-walls()
+draw_walls()
 
 def is_solvable():
     help
