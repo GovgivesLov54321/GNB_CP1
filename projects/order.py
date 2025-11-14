@@ -4,7 +4,7 @@ tax_per = .0585
 menu = {
     "Drinks" : {
         "Water" : "Free",
-         "Fresh Fruit Juice (of choice)": 3.00,
+         "Fresh Fruit Juice": 3.00,
          "Sparkling Water" : 2.00,
          "Soda Cup" : 2.75,
          "Vanilla Milkshake" :  3.25,
@@ -56,12 +56,22 @@ menu = {
 }
 print("Hello, User! Welcome to a place to get food!")
 
-drink_choice = input(f"What drink would you like to have: \n")
-for menu['Drink'] in menu["Drinks"]:
-     print(menu["Drink"])
 
-for menu['Drink'] in menu['Drinks']:
-            print(f"{menu['Drink']} costs {menu['Drinks'[value]]}")
+print("The Drink Menu:")
+for menu['Drink'] in menu["Drinks"]:
+     print(f"{menu["Drink"]}")
+
+drink_choice = input(f"What drink would you like to have: \n").strip()
+
+if drink_choice == "Water":
+     print(f"Water is {menu['Drinks']['Water']}")
+elif drink_choice == "Fresh Fruit Juice":
+     print(f"Fresh Fruit Juice costs ${menu['Drinks']['Fresh Fruit Juice']}")
+
+
+
+#for menu['Drink'] in menu['Drinks']:
+            #print(f"{menu['Drink']} costs {menu['Drinks'[value]]}")
 
 
 
