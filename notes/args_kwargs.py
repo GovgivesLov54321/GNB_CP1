@@ -34,3 +34,16 @@ def full_name(age, **names):
     
 print(full_name(age = "16", first = "Ryker", last = "Garr"))
 print(full_name(age = "16", first = "Maddox", middle = "Jake", last = "Collins"))
+
+def summary(**story): #another example for kwargs
+    sum = ""
+    if "name" in story.keys():
+        sum += f"{story['name']} is the main character of this story..."
+    if "place" in story.keys():
+        sum += f"The story takes place in {story['place']}..."
+    if "conflict" in story.keys():
+        sum += f"The problem is {story['conflict']}..."
+
+    return(sum)
+
+print(summary(name = "Mr. LeBron", place = "Mars", conflict = "The Huzz is home alone"))
