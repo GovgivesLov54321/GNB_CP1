@@ -9,7 +9,7 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
 
 #Ask user what numbers are you going to use
 while True:
-    num_choice = input("What number are you going to use?:\n")
+    num_choice = int(input("What number are you going to use? (1-100):\n"))
 
     if num_choice == numbers:
         print(num_choice)
@@ -19,11 +19,13 @@ while True:
 
 
     #Make the new_numbers a map, and print results
-    new_nums = map(lambda = num_choice: num_choice * num_choice, numbers)
-    print(new_nums)
+    for number in numbers < num_choice:
+        print("Lesser numbers fr")
+    #new_nums = map(lambda num_choice: num_choice * lesser_nums, numbers)
+    #print(new_nums)
 
-    for num in new_nums:
-        print(f"Original: {num}, Result: {new_nums}")
+   # for num in lesser_nums:
+    #    print(f"Original: {num}, Result: {lesser_nums}")
 
     #Ask user if they want to continue
     run_it_back = input('Do you want to try it again? - Say "yes" to do it again OR "quit" to stop:\n')
@@ -33,3 +35,32 @@ while True:
     if run_it_back == "yes":
         continue
     #Return to the start of the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
