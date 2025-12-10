@@ -70,11 +70,31 @@ def pickup_items(item_picked, item, stat_value, amount):
 #               BREAK LOOP AND INCREASE STREET_RESPECT
 #          IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0:
 #               DISPLAY GAME OVER AND END GAME
-#     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT
-def combat_system(enemy_name, enemy_health, enemy_damage):
-    user_fight_choice = input("What do you want to do?: Attack? - Dodge? - Run Away?").strip().lower()
+#     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT        
+def combat_system(enemy_name, enemy_health, enemy_damage, attack_weapon_choice):
+    enemy_damage = random.randint(5, 16)
+    enemy_health = random.randint(50, 175)
+    print(f"Oh no! You're getting jumped by {enemy_name}!")
+    user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter)").strip().lower()
     if user_fight_choice == "attack":
         attack_weapon_choice = input(f"Which weapon do you want to use?: {inventory}")
+        enemy_health = enemy_health - a
+
+    elif user_fight_choice == "dodge":
+        dodge_success = random.randint(1, 2)
+        if dodge_success == 1:
+            print("You dodged successfully!")
+        else:
+            print("Imagine trying to dodge, and still getting hit. 💀")
+    elif user_fight_choice == "run away":
+        escape_chance = random.randint(1, 10)
+        if escape_chance == 6:
+            print(f"{enemy_name} snatched you before you could escape, and hit you!")
+            health_stat = health_stat - {enemy_damage}
+        else:
+            print("Imagine running from a fight like a scaredy cat. 💔")
+            street_respect_stat = street_respect_stat - 15
+
 
 
 
@@ -129,12 +149,21 @@ def combat_system(enemy_name, enemy_health, enemy_damage):
 
 # ITEMS WITH DAMAGE (ONLY CAN BE FOUND IN RANDOM PLACES) LIST
 
-#DICTIONARY WITH ITEM NAMES/DAMAGE:
+#DICTIONARY WITH ITEM NAMES TO DAMAGE:
 # MACHETE : 10
 # PISTOL : 16
 # PEPPER SPRAY : 4
 # BRASS KNUCKLES : RANDOM FROM 7-13
 # GRENADE : 67
+
+# ITEMS WITH DAMAGE (ONLY CAN BE BOUGHT OFF AMAZON) LIST
+
+#DICTIONARY WITH ITEM NAMES/DAMAGE TO PRICE:
+# KATANA/17DMG : 30
+# DRACO (GUN)/20DMG : 50
+# WOLVERINE CLAWS/15DMG : 42
+# ROCKET LAUNCHER/75DMG : 567
+# FLASHBANG/20DMG : 67
 
 # ACTIONS LIST
 
