@@ -31,7 +31,7 @@ print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\
 # ITEM SYSTEM
 
 #DECLARE INVENTORY = EMPTY LIST
-inventory = ["Fists"]
+inventory = ["Fists/5DMG"]
 
 #DECLARE ITEM_1 = “BASIC WEAPON”
 item_knife = "Small Knife"
@@ -71,33 +71,66 @@ def pickup_items(item_picked, item, stat_value, amount):
 #          IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0:
 #               DISPLAY GAME OVER AND END GAME
 #     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT        
-def combat_system(enemy_name, enemy_health, enemy_damage, attack_weapon_choice):
-    enemy_damage = random.randint(5, 16)
-    enemy_health = random.randint(50, 175)
+def combat(enemy_name, enemy_health, enemy_damage, attack_weapon_choice, weapon_damage, turn):
+    #enemy_damage = random.randint(5, 20)
+    #enemy_health = random.randint(45, 175)
+
+    turn_list = ["user", "enemy"]
+    turn = random.choice(turn_list)
+    
+    enemy_choice_list = ["attack", "dodge"]
+    enemy_fight_choice = random.choice(enemy_choice_list)
+    
     print(f"Oh no! You're getting jumped by {enemy_name}!")
-    user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter)").strip().lower()
-    if user_fight_choice == "attack":
-        attack_weapon_choice = input(f"Which weapon do you want to use?: {inventory}")
-        enemy_health = enemy_health - a
+    while enemy_health or health_stat > 0:
+        if turn == "user":
+            user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter)").strip().lower()
+            if user_fight_choice == "attack":
+                attack_weapon_choice = input(f"Which weapon do you want to use from your?: {inventory}")
 
-    elif user_fight_choice == "dodge":
-        dodge_success = random.randint(1, 2)
-        if dodge_success == 1:
-            print("You dodged successfully!")
+                enemy_health = enemy_health - weapon_damage
+
+            elif user_fight_choice == "dodge":
+                user_dodge_success = random.randint(1, 2)
+            elif user_fight_choice == "run away":
+                escape_chance = random.randint(1, 10)
+                if escape_chance == 6:
+                    print(f"{enemy_name} snatched you before you could escape, and hit you!")
+                    health_stat = health_stat - enemy_damage
+                else:
+                    print("Imagine running from a fight like a scaredy cat. 💔")
+                    street_respect_stat = street_respect_stat - 15
+            else:
+                print("You should've chosen an option given to you...🫣")
+                health_stat = health_stat - enemy_damage
         else:
-            print("Imagine trying to dodge, and still getting hit. 💀")
-    elif user_fight_choice == "run away":
-        escape_chance = random.randint(1, 10)
-        if escape_chance == 6:
-            print(f"{enemy_name} snatched you before you could escape, and hit you!")
-            health_stat = health_stat - {enemy_damage}
+            if enemy_fight_choice == "attack" and user_fight_choice == "dodge":
+                def dodge():
+                    if user_dodge_success == 1:
+                        print("You dodged successfully!")
+                    else:
+                        print("Imagine trying to dodge, and still getting hit. 💀")
+                        health_stat = health_stat - enemy_damage
+                    dodge()
+            elif enemy_fight_choice == "attack" and user_fight_choice == "attack":
+                health_stat = health_stat - enemy_damage
+                enemy_health = enemy_health - weapon_damage
+            elif enemy_fight_choice == "dodge" and user_fight_choice == "attack":
+                
+
+        if health_stat <= 0:
+            print("You died - Game Over!!! 🤡")
+            break
+        elif enemy_health <= 0:
+            print(f"You absolutely cooked {enemy_name}!")
+            street_respect_stat = street_respect_stat + 15
+            break
         else:
-            print("Imagine running from a fight like a scaredy cat. 💔")
-            street_respect_stat = street_respect_stat - 15
+            continue
 
 
 
-
+combat("Jordan", random.randint(5, 20), enemy_health = random.randint(45, 175), )
 
 # BOSS BATTLE SYSTEM SETUP
 
