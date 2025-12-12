@@ -28,9 +28,10 @@ print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\
 
 
 
+
 # ITEM SYSTEM
 
-#DECLARE INVENTORY = EMPTY LIST
+#DECLARE INVENTORY = STARTING ITEMS
 inventory = ["Fists/5DMG"]
 
 #DECLARE ITEM_1 = “BASIC WEAPON”
@@ -71,30 +72,30 @@ def pickup_items(item_picked, item, stat_value, amount):
 #          IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0:
 #               DISPLAY GAME OVER AND END GAME
 #     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT        
-def combat(enemy_name, enemy_health, enemy_damage, attack_weapon_choice, weapon_damage, turn):
+def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choice):
     #enemy_damage = random.randint(5, 20)
     #enemy_health = random.randint(45, 175)
 
-    turn_list = ["user", "enemy"]
-    turn = random.choice(turn_list)
+    turn = random.choice(["user", "enemy"])
     
-    enemy_choice_list = ["attack", "dodge"]
-    enemy_fight_choice = random.choice(enemy_choice_list)
+    enemy_fight_choice = random.choice(["attack", "dodge"])
     
     print(f"Oh no! You're getting jumped by {enemy_name}!")
-    while enemy_health or health_stat > 0:
+    while enemy_health > 0 and health_stat > 0:
         if turn == "user":
             user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter)").strip().lower()
             if user_fight_choice == "attack":
-                attack_weapon_choice = input(f"Which weapon do you want to use from your?: {inventory}")
+                attack_weapon_choice = input(f"Which weapon do you want to use from your? (type the word/words in letter for letter): {inventory}").strip()
 
-                enemy_health = enemy_health - weapon_damage
+                if attack_weapon_choice == "Fists":
+                    enemy_health = enemy_health - 5
+                    print(enemy_health)
 
             elif user_fight_choice == "dodge":
-                user_dodge_success = random.randint(1, 2)
+                user_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
             elif user_fight_choice == "run away":
-                escape_chance = random.randint(1, 10)
-                if escape_chance == 6:
+                user_escape_chance = random.randint(1, 10) #TEN PERCENT CHANCE ESCAPE FAILS
+                if user_escape_chance == 6:
                     print(f"{enemy_name} snatched you before you could escape, and hit you!")
                     health_stat = health_stat - enemy_damage
                 else:
@@ -107,16 +108,23 @@ def combat(enemy_name, enemy_health, enemy_damage, attack_weapon_choice, weapon_
             if enemy_fight_choice == "attack" and user_fight_choice == "dodge":
                 def dodge():
                     if user_dodge_success == 1:
-                        print("You dodged successfully!")
-                    else:
                         print("Imagine trying to dodge, and still getting hit. 💀")
                         health_stat = health_stat - enemy_damage
+                    else:
+                        print("You dodged successfully!")
+                        #continue
                     dodge()
             elif enemy_fight_choice == "attack" and user_fight_choice == "attack":
                 health_stat = health_stat - enemy_damage
-                enemy_health = enemy_health - weapon_damage
+              #  enemy_health = enemy_health - weapon_damage
             elif enemy_fight_choice == "dodge" and user_fight_choice == "attack":
-                
+                    enemy_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
+                    if user_dodge_success == 1:
+                        print(f"{enemy_name} tried to dodge your attack, but you still hit them!")
+                #        enemy_health = enemy_health - weapon_damage
+                    else:
+                        print(f"{enemy_name} dodged your attack successfully!")
+                        continue
 
         if health_stat <= 0:
             print("You died - Game Over!!! 🤡")
@@ -130,7 +138,7 @@ def combat(enemy_name, enemy_health, enemy_damage, attack_weapon_choice, weapon_
 
 
 
-combat("Jordan", random.randint(5, 20), enemy_health = random.randint(45, 175), )
+print(combat("Jordan", random.randint(45, 175), random.randint(5, 20), 100, input()))
 
 # BOSS BATTLE SYSTEM SETUP
 
@@ -351,3 +359,17 @@ combat("Jordan", random.randint(5, 20), enemy_health = random.randint(45, 175), 
 
 #IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0 AT ANY TIME:
 #     DISPLAY GAME OVER MESSAGE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
