@@ -37,9 +37,14 @@ health_stat = 100
 print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\nStreet Respect: {street_respect_stat}\nStealth: {stealth_stat}\nMoney: {money_stat}\nFight Damage: {fight_damage_stat}\nHealth: {health_stat}\n")
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 # ITEM SYSTEM
 
-#DECLARE INVENTORY = EMPTY LIST
+#DECLARE INVENTORY = STARTING ITEMS
 inventory = ["Fists/5DMG"]
 
 #DECLARE ITEM_1 = “BASIC WEAPON”
@@ -104,6 +109,7 @@ def pickup_item(item_picked_flag_name, item, stat_name=None, amount=0):
 #          IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0:
 #               DISPLAY GAME OVER AND END GAME
 #     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT        
+<<<<<<< HEAD
 def combat(enemy_name, enemy_health, enemy_damage):
     global health_stat, street_respect_stat, inventory, fight_damage_stat
     print(f"Oh no! You're getting jumped by {enemy_name}!")
@@ -137,6 +143,37 @@ def combat(enemy_name, enemy_health, enemy_damage):
                 print("You dodged successfully!")
                 # Skip enemy attack this turn
                 continue
+=======
+def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choice):
+    #enemy_damage = random.randint(5, 20)
+    #enemy_health = random.randint(45, 175)
+
+    turn = random.choice(["user", "enemy"])
+    
+    enemy_fight_choice = random.choice(["attack", "dodge"])
+    
+    print(f"Oh no! You're getting jumped by {enemy_name}!")
+    while enemy_health > 0 and health_stat > 0:
+        if turn == "user":
+            user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter)").strip().lower()
+            if user_fight_choice == "attack":
+                attack_weapon_choice = input(f"Which weapon do you want to use from your? (type the word/words in letter for letter): {inventory}").strip()
+
+                if attack_weapon_choice == "Fists":
+                    enemy_health = enemy_health - 5
+                    print(enemy_health)
+
+            elif user_fight_choice == "dodge":
+                user_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
+            elif user_fight_choice == "run away":
+                user_escape_chance = random.randint(1, 10) #TEN PERCENT CHANCE ESCAPE FAILS
+                if user_escape_chance == 6:
+                    print(f"{enemy_name} snatched you before you could escape, and hit you!")
+                    health_stat = health_stat - enemy_damage
+                else:
+                    print("Imagine running from a fight like a scaredy cat. 💔")
+                    street_respect_stat = street_respect_stat - 15
+>>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
             else:
                 print("You tried to dodge but got hit!")
 
@@ -149,6 +186,7 @@ def combat(enemy_name, enemy_health, enemy_damage):
                 print(f"{enemy_name} caught you and hit you!")
                 health_stat -= enemy_damage
         else:
+<<<<<<< HEAD
             print("Invalid choice! You get hit.")
             health_stat -= enemy_damage
 
@@ -161,12 +199,40 @@ def combat(enemy_name, enemy_health, enemy_damage):
             print(f"You absolutely cooked {enemy_name}!")
             street_respect_stat += 15
             break
+=======
+            if enemy_fight_choice == "attack" and user_fight_choice == "dodge":
+                def dodge():
+                    if user_dodge_success == 1:
+                        print("Imagine trying to dodge, and still getting hit. 💀")
+                        health_stat = health_stat - enemy_damage
+                    else:
+                        print("You dodged successfully!")
+                        #continue
+                    dodge()
+            elif enemy_fight_choice == "attack" and user_fight_choice == "attack":
+                health_stat = health_stat - enemy_damage
+              #  enemy_health = enemy_health - weapon_damage
+            elif enemy_fight_choice == "dodge" and user_fight_choice == "attack":
+                    enemy_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
+                    if user_dodge_success == 1:
+                        print(f"{enemy_name} tried to dodge your attack, but you still hit them!")
+                #        enemy_health = enemy_health - weapon_damage
+                    else:
+                        print(f"{enemy_name} dodged your attack successfully!")
+                        continue
+>>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 
         if health_stat <= 0:
             print("You died - Game Over!!!")
             exit()
 
 
+<<<<<<< HEAD
+=======
+
+print(combat("Jordan", random.randint(45, 175), random.randint(5, 20), 100, input()))
+
+>>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 # BOSS BATTLE SYSTEM SETUP
 
 #DISPLAY INSTRUCTIONS:
@@ -579,8 +645,83 @@ def alleyway():
             street_respect_stat -= 20
             print("Caught! Lost money and respect.")
 
+<<<<<<< HEAD
     elif choice == "rob":
         if smarts_stat < 50 or stealth_stat < 20:
             chance = random.randint(1, 10)
             if chance <= 6:
                
+=======
+
+# TIME/DAY LOOP
+
+#DECLARE DAY = 1
+
+#WHILE DAY IS LESS THAN OR EQUAL TO 7:
+#     DISPLAY CURRENT DAY NUMBER
+#     CALL HOME FUNCTION TO ALLOW PLAYER ACTIONS
+#     AFTER PLAYER COMPLETES 3 ACTIONS:
+#          INCREMENT DAY BY 1
+
+
+# FINAL BOSS FIGHT
+
+#WHEN DAY REACHES 7:
+#     DISPLAY MESSAGE THAT FINAL FIGHT IS BEGINNING
+#     CALL FINAL_BOSS_BATTLE FUNCTION
+
+#DEFINE FUNCTION FINAL_BOSS_BATTLE():
+#     DISPLAY SHADOW BOXING RULES TO PLAYER
+#     SET pointer = PLAYER
+#     SET looker = BOSS
+#     SET streak = 0
+#     SET allowed_directions = ["UP", "DOWN", "LEFT", "RIGHT"]
+
+#     LOOP INDEFINITELY:
+#          pointer_choice = GET INPUT FROM pointer (choose direction from allowed_directions)
+#          looker_choice = GET INPUT FROM looker (random choice if computer)
+
+#          IF pointer_choice EQUALS looker_choice:
+#               INCREASE streak BY 1
+#               REMOVE pointer_choice FROM allowed_directions
+#               DISPLAY "Match! Current streak: " + streak
+
+#               IF streak EQUALS 3:
+#                    DISPLAY "Pointer wins the shadow boxing!"
+#                    BREAK LOOP
+
+#          ELSE:
+#               DISPLAY "Looker in a different direction! Roles switch!"
+#               SWAP pointer AND looker
+#               RESET streak TO 0
+#               RESET allowed_directions TO ["UP", "DOWN", "LEFT", "RIGHT"]
+
+#     IF PLAYER IS pointer (i.e. player won):
+#          DISPLAY VICTORY MESSAGE
+
+#     ELSE:
+#          DISPLAY GAME OVER MESSAGE
+
+
+# END OF GAME
+
+#IF PLAYER SURVIVES ALL 7 DAYS AND DEFEATS BOSS:
+#     DISPLAY ENDING AND CREDITS
+
+#IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0 AT ANY TIME:
+#     DISPLAY GAME OVER MESSAGE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
