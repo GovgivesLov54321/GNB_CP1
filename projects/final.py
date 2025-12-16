@@ -144,7 +144,7 @@ def pickup_item(item_picked_flag_name, item, stat_name=None, amount=0):
 
 #DEFINE FUNCTION ORDER_WEAPON_FROM_AMAZON():
 def order_weapon_from_amazon():
-    global money_stat, fight_damage_stat
+    global money_stat, fight_damage_stat, weapon
 
     print("\n--- AMAZON WEAPON SHOP ---")
     for weapon in amazon_weapons:
@@ -158,7 +158,7 @@ def order_weapon_from_amazon():
 
         if money_stat >= price:
             money_stat -= price
-            inventory[choice] = "damage"
+            inventory[choice] = amazon_weapons[choice]
             print(f"You bought the {choice} for {price} dollars. And it does {damage} damage.")
         else:
             print("You don't have enough money.")
@@ -180,7 +180,8 @@ def combat(enemy_name, enemy_health, enemy_damage):
     global health_stat, street_respect_stat, money_stat
 
 
-    
+    user_dodge_success = random.randint(1, 5)
+    enemy_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
     enemy_fight_choice = random.choice(["attack", "dodge"])
     user_fight_choice = random.choice(["attack", "dodge"])
 
@@ -188,60 +189,55 @@ def combat(enemy_name, enemy_health, enemy_damage):
     while enemy_health > 0 and health_stat > 0:
         user_fight_choice = input("What do you want to do?: attack? - dodge? - run away? (type the word/words in letter for letter):").strip().lower()
         if user_fight_choice == "attack":
-            attack_weapon_choice = input(f"Which weapon do you want to use from your? (type the word/words in letter for letter): {inventory}").strip().lower()
+            attack_weapon_choice = input(f"Which weapon do you want to use from your? (type the word/words in letter for letter): {inventory}").strip().upper()
 
 
                                 
-            if attack_weapon_choice in amazon_weapons in inventory:
+            if attack_weapon_choice in list(inventory.keys()):
                 if enemy_fight_choice == "dodge":
-                    enemy_dodge_success = random.randint(1, 5) #TWENTY PERCENT CHANCE DODGE FAILS
-                    def enemy_dodge_for_combat():
-                            if enemy_dodge_success == 1:
-                                enemy_health = enemy_health - "damage"
-                                print(f"{enemy_name} tried to dodge your attack, but missed and now has {enemy_health} health.")
-                            else:
-                                print("You dodged successfully!")
-                            print(f"{enemy_name} dodged your attack!")
-                    enemy_dodge_for_combat
-                enemy_health = enemy_health - "damage"
-                print(f"You did {"damage"} damage to {enemy_name}. - They now have {enemy_health}.")
+                    if enemy_dodge_success == 1:
+                        enemy_health -= {amazon_weapons[weapon]["damage"]}
+                        print(f"{enemy_name} tried to dodge your attack, but messed up and now has {enemy_health} health.")
+                    else:
+                        print(f"{enemy_name} dodged your attack!")
+                else:
+                    health_stat -= enemy_damage
+            
+                enemy_health = enemy_health - amazon_weapons[weapon]["damage"]
+                print(f"You did {'damage'} damage to {enemy_name}. - They now have {enemy_health}.")
             elif attack_weapon_choice == "fists":
-                def enemy_dodge_for_combat():
+                if enemy_fight_choice == "dodge":
                     if enemy_dodge_success == 1:
                         enemy_health = enemy_health - "damage"
-                        print(f"{enemy_name} tried to dodge your attack, but missed and now has {enemy_health} health.")
+                        print(f"{enemy_name} tried to dodge your attack, but messed up and now has {enemy_health} health.")
                     else:
-                        print("You dodged successfully!")
-                    print(f"{enemy_name} dodged your attack!")
-                enemy_dodge_for_combat
+                        print(f"{enemy_name} dodged your attack!")
+                else:
+                    health_stat -= enemy_damage
 
                 enemy_health = enemy_health - fight_damage_stat
                 print(f"You did {fight_damage_stat} damage to {enemy_name}. - They now have {enemy_health} health.")
                 
 
 
-            elif user_fight_choice == "dodge":
-                user_dodge_success = random.randint(1, 5)
-                def user_dodge_for_combat():
-                    if user_dodge_success == 1:
-                        health_stat = health_stat - enemy_damage
-                        print(f"Imagine trying to dodge, and still getting hit. 💀 - You now have {health_stat} health.")
-                    else:
-                        print("You dodged successfully!")
-                    print(f"{enemy_name} dodged your attack!")
-                user_dodge_for_combat
-            elif user_fight_choice == "run away":
-                user_escape_chance = random.randint(1, 10) #TEN PERCENT CHANCE ESCAPE FAILS
-                if user_escape_chance == 6:
+        elif user_fight_choice == "dodge":
+                if user_dodge_success == 1:
                     health_stat = health_stat - enemy_damage
-                    print(f"{enemy_name} snatched you before you could escape, and hit you! - You now have {health_stat} health.")
+                    print(f"Imagine trying to dodge, and still getting hit. 💀 - You now have {health_stat} health.")
                 else:
-                    street_respect_stat = street_respect_stat - 15
-                    print(f"Imagine running from a fight like a scaredy cat. 💔\nThis is your street respect now though: {street_respect_stat}.")
-                    break
+                    print("You dodged successfully!")
+        elif user_fight_choice == "run away":
+            user_escape_chance = random.randint(1, 10) #TEN PERCENT CHANCE ESCAPE FAILS
+            if user_escape_chance == 6:
+                health_stat = health_stat - enemy_damage
+                print(f"{enemy_name} snatched you before you could escape, and hit you! - You now have {health_stat} health.")
             else:
-                health_stat -= enemy_damage
-                print(f"You tried to dodge but got hit! - You now have {health_stat} health left")
+                street_respect_stat = street_respect_stat - 15
+                print(f"Imagine running from a fight like a scaredy cat. 💔\nThis is your street respect now though: {street_respect_stat}.")
+                break
+        else:
+            health_stat -= enemy_damage
+            print(f"Action not recognized. - You now have {health_stat} health left")
 
         
 
@@ -575,13 +571,13 @@ def alleyway():
         chance = random.randint(1, 10)
         if chance == 6:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         elif chance == 7:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         elif chance == 8:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         else:
             money_stat += random.randint(0, 900)
             street_respect_stat += 20
@@ -676,20 +672,20 @@ def opps_territory():
         chance = random.randint(1, 10)
         if chance == 6:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         elif chance == 7:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         elif chance == 8:
             print("They aren't giving up without a fight!")
-            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+            combat("Oprah Winfrey", random.randint(50, 100), random.randint(2, 25))
         else:
             money_stat += random.randint(0, 900)
             street_respect_stat += 20
             print(f"You robbed them successfully, and now have ${money_stat}, and {street_respect_stat} street respect!")
     elif choice == "talk trash":
         print("Why would you talk trash on live in opp-town?")
-        combat(random.choice["Jeremy", "DaQuavion", "Josh", "Dillon", "Von III"], random.randint(45, 135), random.randint(10, 30))
+        combat("Von III", random.randint(45, 135), random.randint(10, 30))
     else:
         print("Action not recognized.")
         
