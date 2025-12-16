@@ -37,11 +37,8 @@ health_stat = 100
 print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\nStreet Respect: {street_respect_stat}\nStealth: {stealth_stat}\nMoney: {money_stat}\nFight Damage: {fight_damage_stat}\nHealth: {health_stat}\n")
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 # ITEM SYSTEM
 
 #DECLARE INVENTORY = STARTING ITEMS
