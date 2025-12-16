@@ -37,11 +37,8 @@ health_stat = 100
 print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\nStreet Respect: {street_respect_stat}\nStealth: {stealth_stat}\nMoney: {money_stat}\nFight Damage: {fight_damage_stat}\nHealth: {health_stat}\n")
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 # ITEM SYSTEM
 
 #DECLARE INVENTORY = STARTING ITEMS
@@ -109,41 +106,6 @@ def pickup_item(item_picked_flag_name, item, stat_name=None, amount=0):
 #          IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0:
 #               DISPLAY GAME OVER AND END GAME
 #     ENSURE ENEMY DOES NOT RESPAWN AFTER DEFEAT        
-<<<<<<< HEAD
-def combat(enemy_name, enemy_health, enemy_damage):
-    global health_stat, street_respect_stat, inventory, fight_damage_stat
-    print(f"Oh no! You're getting jumped by {enemy_name}!")
-
-    while enemy_health > 0 and health_stat > 0:
-        user_fight_choice = input("What do you want to do?: attack - dodge - run away? ").strip().lower()
-
-        if user_fight_choice == "attack":
-            print(f"Your weapons: {inventory}")
-            weapon_choice = input("Choose weapon to use: ").strip()
-
-            # Find weapon damage
-            weapon_damage = None
-            for item in inventory:
-                if weapon_choice in item:
-                    try:
-                        weapon_damage = int(item.split("/")[1].replace("DMG", ""))
-                    except:
-                        weapon_damage = fight_damage_stat
-                    break
-            if weapon_damage is None:
-                print("You don't have that weapon. You punch with fists.")
-                weapon_damage = 5
-
-            enemy_health -= weapon_damage
-            print(f"You hit {enemy_name} for {weapon_damage} damage! Enemy health is now {enemy_health}.")
-
-        elif user_fight_choice == "dodge":
-            success = random.choice([True, False])
-            if success:
-                print("You dodged successfully!")
-                # Skip enemy attack this turn
-                continue
-=======
 def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choice):
     #enemy_damage = random.randint(5, 20)
     #enemy_health = random.randint(45, 175)
@@ -173,7 +135,6 @@ def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choic
                 else:
                     print("Imagine running from a fight like a scaredy cat. 💔")
                     street_respect_stat = street_respect_stat - 15
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
             else:
                 print("You tried to dodge but got hit!")
 
@@ -186,20 +147,6 @@ def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choic
                 print(f"{enemy_name} caught you and hit you!")
                 health_stat -= enemy_damage
         else:
-<<<<<<< HEAD
-            print("Invalid choice! You get hit.")
-            health_stat -= enemy_damage
-
-        # Enemy attacks unless player dodged successfully
-        if user_fight_choice != "dodge" or (user_fight_choice == "dodge" and not success):
-            health_stat -= enemy_damage
-            print(f"{enemy_name} hits you for {enemy_damage} damage! Your health is now {health_stat}.")
-
-        if enemy_health <= 0:
-            print(f"You absolutely cooked {enemy_name}!")
-            street_respect_stat += 15
-            break
-=======
             if enemy_fight_choice == "attack" and user_fight_choice == "dodge":
                 def dodge():
                     if user_dodge_success == 1:
@@ -220,19 +167,15 @@ def combat(enemy_name, enemy_health, enemy_damage, health_stat, user_fight_choic
                     else:
                         print(f"{enemy_name} dodged your attack successfully!")
                         continue
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 
         if health_stat <= 0:
             print("You died - Game Over!!!")
             exit()
 
 
-<<<<<<< HEAD
-=======
 
-print(combat("Jordan", random.randint(45, 175), random.randint(5, 20), 100, input()))
+#print(combat("Jordan", random.randint(45, 175), random.randint(5, 20), 100, input()))
 
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
 # BOSS BATTLE SYSTEM SETUP
 
 #DISPLAY INSTRUCTIONS:
@@ -381,25 +324,35 @@ def LOCATION_SELECTOR():
     choice = input("Type location name: ").upper()
 
     if choice == "HOME":
-        ()
+        home()
+        actions += 1
     elif choice == "BESTIE_HOME":
         bestie_home()
+        actions += 1
     elif choice == "SIGNIFICANT_OTHER_HOME":
         significant_other_home()
+        actions += 1
     elif choice == "GANG_SPOT":
         gang_spot()
+        actions += 1
     elif choice == "MCDONALDS":
         work_mcdonalds()
+        actions += 1
     elif choice == "GAS_STATION":
         gas_station()
+        actions += 1
     elif choice == "ALLEYWAY":
         alleyway()
+        actions += 1
     elif choice == "OUTSIDE":
         outside()
+        actions += 1
     elif choice == "HOSPITAL":
         hospital()
+        actions += 1
     elif choice == "OPPS_TERRITORY":
         opps_territory()
+        actions += 1
     else:
         print("Invalid location.")
 
@@ -418,9 +371,11 @@ def home():
 
     elif choice == "order weapon":
         order_weapon_from_amazon()
+        actions += 1
 
     elif choice == "talk trash":
         talk_trash_on_live()
+        actions += 1
 
     elif choice == "go somewhere else":
         LOCATION_SELECTOR()
@@ -428,6 +383,7 @@ def home():
     elif choice == "sleep":
         print("You rest and regain some health.")
         modify_stats("health", 10)
+        actions += 1
 
     elif choice == "eat":
         if money_stat >= 10:
@@ -442,9 +398,11 @@ def home():
 
     elif choice == "invite best friend":
         print(f"You invited your best friend {characters['BEST FRIEND']} over.")
+        actions += 1
 
     elif choice == "invite significant other":
         print(f"You invited your significant other {characters['SIGNIFICANT OTHER']} over.")
+        actions += 1
 
     elif choice == "hide":
         print("You hide for a while.")
@@ -468,12 +426,15 @@ def bestie_home():
 
     elif choice == "order weapon":
         order_weapon_from_amazon()
+        actions += 1
 
     elif choice == "talk trash":
         talk_trash_on_live()
+        actions += 1
 
     elif choice == "hang out":
         print(f"You hang out with your best friend {characters['BEST FRIEND']}.")
+        actions += 1
 
     elif choice == "go somewhere else":
         LOCATION_SELECTOR()
@@ -481,6 +442,7 @@ def bestie_home():
     elif choice == "sleep":
         print("You sleep and regain some health.")
         modify_stats("health", 10)
+        actions += 1
 
     elif choice == "eat":
         print("You ate some food.")
@@ -504,12 +466,15 @@ def significant_other_home():
 
     elif choice == "order weapon":
         order_weapon_from_amazon()
+        actions += 1
 
     elif choice == "talk trash":
         talk_trash_on_live()
+        actions += 1
 
     elif choice == "hang out":
         print(f"You hang out with your significant other {characters['SIGNIFICANT OTHER']}.")
+        actions += 1
 
     elif choice == "go somewhere else":
         LOCATION_SELECTOR()
@@ -517,6 +482,7 @@ def significant_other_home():
     elif choice == "sleep":
         print("You sleep and regain some health.")
         modify_stats("health", 10)
+        actions += 1
 
     elif choice == "eat":
         print("You ate some food.")
@@ -539,6 +505,7 @@ def gang_spot():
 
     if choice == "hang out":
         print(f"You hang out with your gang.")
+        actions += 1
 
     elif choice == "read":
         modify_stats("smarts", 7)
@@ -546,9 +513,11 @@ def gang_spot():
 
     elif choice == "order weapon":
         order_weapon_from_amazon()
+        actions += 1
 
     elif choice == "talk trash":
         talk_trash_on_live()
+        actions += 1
 
     elif choice == "go somewhere else":
         LOCATION_SELECTOR()
@@ -573,10 +542,12 @@ def work_mcdonalds():
         earned = random.randint(50, 150)
         money_stat += earned
         print(f"You worked and earned ${earned}.")
+        actions += 1
 
     elif choice == "skip work":
         street_respect_stat -= 20
         print("You skipped work. Street respect dropped.")
+        LOCATION_SELECTOR()
 
     else:
         print("Action not recognized.")
@@ -600,17 +571,31 @@ def gas_station():
 
     elif choice == "rob":
         chance = random.randint(1, 10)
-        if chance <= 3:
+        actions += 1
+        if chance == 3:
             money_stat -= 20
             street_respect_stat -= 15
-            print("Caught robbing! Lost money and respect.")
+            print("Caught robbing! Lost money, respect, and health.")
+        elif chance == 5:
+            money_stat -= 20
+            street_respect_stat -= 15
+            print("Caught robbing! Lost money, respect, and health.")
+        elif chance == 4:
+            money_stat -= 20
+            street_respect_stat -= 15
+            print("Caught robbing! Lost money, respect, and health.")
+        elif chance == 6:
+            print("The cashier had a gun, and shot you in the head!")
+            print("You died - Game Over!!!")
+            exit()
         else:
-            gained = random.randint(20, 50)
+            gained = random.randint(20, 150)
             money_stat += gained
             print(f"Robbery successful! You got ${gained}.")
 
     elif choice == "talk trash":
         talk_trash_on_live()
+        actions += 1
 
     else:
         print("Action not recognized.")
@@ -627,6 +612,7 @@ def alleyway():
 
     if choice == "proceed":
         encounter = random.choice([True, False])
+        actions += 1
         if encounter:
             print("You encountered an enemy!")
             combat("Alley Opp", random.randint(30, 60), random.randint(5, 15))
@@ -638,30 +624,147 @@ def alleyway():
 
     elif choice == "do illegal things":
         chance = random.randint(1, 10)
+        actions += 1
         if chance > (smarts_stat // 30) + (stealth_stat // 10):
             print("You did illegal things without getting caught.")
         else:
             money_stat -= 30
             street_respect_stat -= 20
             print("Caught! Lost money and respect.")
-
-<<<<<<< HEAD
     elif choice == "rob":
-        if smarts_stat < 50 or stealth_stat < 20:
-            chance = random.randint(1, 10)
-            if chance <= 6:
-               
-=======
+        chance = random.randint(1, 10)
+        actions += 1
+        if chance == 6:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 7:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 8:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        else:
+            money_stat += random.randint(0, 900)
+            street_respect_stat += 20
+            print(f"You robbed them successfully, and now have ${money_stat}, and {street_respect_stat} street respect!")
+
+#DEFINE FUNCTION OUTSIDE():
+def outside():
+    global money_stat, street_respect_stat, health_stat, smarts_stat, stealth_stat
+
+    print("\nYou are OUTSIDE.")
+    print("Options: proceed, do illegal things, rob, talk trash")
+
+    choice = input("Choose an action: ").strip().lower()
+
+    if choice == "proceed":
+        encounter = random.choice([True, False])
+        actions += 1
+        if encounter:
+            print("You encountered an enemy!")
+            combat(random.choice["Homeless Crackhead named Jarvis", "Homeless Crackhead named Gigi"], random.randint(30, 60), random.randint(5, 15))
+        else:
+            print("No enemies here.")
+
+
+    elif choice == "do illegal things":
+        chance = random.randint(1, 10)
+        actions += 1
+        if chance > (smarts_stat // 30) + (stealth_stat // 10):
+            print("You did illegal things without getting caught.")
+        else:
+            money_stat -= 30
+            street_respect_stat -= 20
+            print("Caught! Lost money and respect.")
+    elif choice == "rob":
+        chance = random.randint(1, 10)
+        actions += 1
+        if chance == 6:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 7:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 8:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        else:
+            money_stat += random.randint(0, 900)
+            street_respect_stat += 20
+            print(f"You robbed them successfully, and now have ${money_stat}, and {street_respect_stat} street respect!")
+
+def hospital():
+    global money_stat, health_stat
+    if money_stat >= 100:
+        print("You don't have enough money to heal yourself up fully.")
+    else:
+        money_stat -= 100
+        health_stat = 100
+        print("You got fully healed")
+#DEFINE FUNCTION ALLEYWAY():
+def opps_territory():
+    global money_stat, street_respect_stat, health_stat, smarts_stat, stealth_stat
+
+    print("\nYou are deep in the opps territory.")
+    print("Options: proceed, rob, talk trash")
+
+    choice = input("Choose an action: ").strip().lower()
+
+    if choice == "proceed":
+        encounter = random.choice([True, False])
+        actions += 1
+        if encounter:
+            print("You encountered an opp!")
+            combat("Opp Gang member", random.randint(30, 60), random.randint(5, 15))
+        else:
+            print("No enemies here.")
+
+    elif choice == "do illegal things":
+        chance = random.randint(1, 10)
+        actions += 1
+        if chance > (smarts_stat // 30) + (stealth_stat // 10):
+            print("You did illegal things without getting caught.")
+        else:
+            money_stat -= 30
+            street_respect_stat -= 20
+            print("Caught! Lost money and respect.")
+    elif choice == "rob":
+        chance = random.randint(1, 10)
+        actions += 1
+        if chance == 6:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 7:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        elif chance == 8:
+            print("They aren't giving up without a fight!")
+            combat(random.choice["Janice", "Aaron", "LeBron", "Oprah Winfrey"], random.randint(50, 100), random.randint(2, 25))
+        else:
+            money_stat += random.randint(0, 900)
+            street_respect_stat += 20
+            print(f"You robbed them successfully, and now have ${money_stat}, and {street_respect_stat} street respect!")
+    elif choice == "talk trash":
+        print("Why would you talk trash on live in opp-town?")
+        combat(random.choice["Jeremy", "DaQuavion", "Josh", "Dillon", "Von III"], random.randint(45, 135), random.randint(10, 30))
+        
 
 # TIME/DAY LOOP
 
 #DECLARE DAY = 1
 
+day = 1
+actions = 0
 #WHILE DAY IS LESS THAN OR EQUAL TO 7:
 #     DISPLAY CURRENT DAY NUMBER
 #     CALL HOME FUNCTION TO ALLOW PLAYER ACTIONS
 #     AFTER PLAYER COMPLETES 3 ACTIONS:
 #          INCREMENT DAY BY 1
+
+while day <= 7:
+    print(f"IT'S DAY {day}")
+    if actions == 3:
+        day += 1
 
 
 # FINAL BOSS FIGHT
@@ -710,18 +813,3 @@ def alleyway():
 
 #IF PLAYER_HEALTH IS LESS THAN OR EQUAL TO 0 AT ANY TIME:
 #     DISPLAY GAME OVER MESSAGE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 78bf9f60b2cdac9352eda1f57db7d91456268980
