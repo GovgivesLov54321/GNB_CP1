@@ -208,7 +208,7 @@ def combat(enemy_name, enemy_health, enemy_damage):
             
                 enemy_health = enemy_health - amazon_weapons[weapon]["damage"]
                 print(f"You did {'damage'} damage to {enemy_name}. - They now have {enemy_health}.")
-            elif attack_weapon_choice == "fists":
+            elif attack_weapon_choice == "FISTS":
                 if enemy_fight_choice == "dodge":
                     if enemy_dodge_success == 1:
                         enemy_health = enemy_health - "damage"
