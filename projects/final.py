@@ -3,6 +3,8 @@
 #IMPORT RANDOM LIBRARY
 import random
 
+
+quitting = False
 #WELCOME USER TO “FREE GAME BASED IN THE HOOD”
 print("Welcome, User, to a Free Game Based in the Hood!")
 
@@ -89,7 +91,7 @@ print(f"Now you'll get your randomly generated stats:\nSmarts/IQ: {smarts_stat}\
 
 #DECLARE INVENTORY = STARTING ITEMS
 inventory = {"Fists" : {"damage": fight_damage_stat}
-             }
+            }
 
 #DECLARE ITEM_1 = “BASIC WEAPON”
 item_knife = "Small Knife"
@@ -202,6 +204,7 @@ def combat(enemy_name, enemy_health, enemy_damage):
                         print(f"{enemy_name} dodged your attack!")
                 else:
                     health_stat -= enemy_damage
+                    print(f"{enemy_name} landed a hit on you! - You now have {health_stat} health.")
             
                 enemy_health = enemy_health - amazon_weapons[weapon]["damage"]
                 print(f"You did {'damage'} damage to {enemy_name}. - They now have {enemy_health}.")
@@ -214,6 +217,7 @@ def combat(enemy_name, enemy_health, enemy_damage):
                         print(f"{enemy_name} dodged your attack!")
                 else:
                     health_stat -= enemy_damage
+                    print(f"{enemy_name} landed a hit on you! - You now have {health_stat} health.")
 
                 enemy_health = enemy_health - fight_damage_stat
                 print(f"You did {fight_damage_stat} damage to {enemy_name}. - They now have {enemy_health} health.")
@@ -807,6 +811,7 @@ def check_player_health():
     if health_stat <= 0:
         print("You died - Game Over!!!")
         exit()
+                    
 
 # TIME / DAY LOOP SYSTEM
 
@@ -857,9 +862,9 @@ if day > 7:
 # ACTIONS LIST
 
 #actions = [
- #   "HANG AROUND",
-  #  "GOOF OFF",
-   # "TALK TRASH TO OPPS ON LIVE",
+#   "HANG AROUND",
+#  "GOOF OFF",
+# "TALK TRASH TO OPPS ON LIVE",
     #"ROB SOMEONE/PLACE",
     #"EAT/BUY SOMETHING",
     #"HIDE THERE"
